@@ -50,14 +50,24 @@ Extracted URL: hxxps://t[.]co/yuxfZm8KPg?amp=1
 
 
 
-## Email 2: "Netflix Payment Update" (PDF Attachment Analysis) 
-![ Email 2 Overview ](screenshots/.......png)
 
+
+
+
+
+
+
+
+
+
+## Email 2: "Netflix Payment Update" (PDF Attachment Analysis) 
+![ Email 2 Overview ](screenshots/email2yy.png)
+![ Email 2 Overview ](screenshots/Email2yyy.png)
 ### Objective 
 Investigate a suspicious attachment ('Payment-update.pdf') using the ANY.RUN sandbox environment to observe its execution behavior, network activity, and extract Indicators of Compromise (IOCs).
 
 ### Sandbox Analysis (ANY.RUN)
-![ ANY.RUN Execution ](screenshots/....png)
+![ ANY.RUN Execution ](screenshots/Email2yyyExe.png)
 
 
 **1 File Execution & Behavior:**
