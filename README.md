@@ -44,18 +44,7 @@ Extracted URL: hxxps://t[.]co/yuxfZm8KPg?amp=1
 
 ![ Email 1 button ](screenshots/body-button-urlemail4.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 
@@ -82,10 +71,10 @@ This URL resoled to the IP address: 35[.]244[.]149[.]249
 The page was designed to harvest user credentials by tricking the victim into entering their Netflix password.
 
 ## Indicators of Compromise (IOCs)**
-**File Name:** 'Payment-Update.PDF'
-**DM5 Hash:** '4a2775eae2ebef41901a3f08d3b857c8'
-**Malicious URL:** 'hxxps://lihi1[.]com/JgdmJ'
-**IP ADDRESS:** '35[.]244[.]149[.]249'
+* File Name: 'Payment-Update.PDF'
+* DM5 Hash: '4a2775eae2ebef41901a3f08d3b857c8'
+* Malicious URL: 'hxxps://lihi1[.]com/JgdmJ'
+* IP ADDRESS: '35[.]244[.]149[.]249'
 
 ### CONCLUSION
 The attachment is a malicious PDF. It uses an embedded URL to redirect the victim to a credential harvesting site. The URL ('lihi1.com') is a know shortener, which attackers use to hide their final destination and bypass email filters.
