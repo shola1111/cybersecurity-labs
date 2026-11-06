@@ -78,3 +78,48 @@ The page was designed to harvest user credentials by tricking the victim into en
 
 ### CONCLUSION
 The attachment is a malicious PDF. It uses an embedded URL to redirect the victim to a credential harvesting site. The URL ('lihi1.com') is a know shortener, which attackers use to hide their final destination and bypass email filters.
+
+---
+
+
+
+---
+
+## Email 3: Malicious Excel Document (.xlsx) - EQNEDT32 Exploit
+
+![Email 3 Document](screenshots/excel-doc-email3.png)
+
+### Objective
+Investigate a different suspicious phishing attachment (`CBJ200620083959.xlsx`) using the ANY.RUN sandbox. The goal was to review the execution results to identify notable behaviors, process activity, network connections, and IOCs.
+
+### Sandbox Analysis (ANY.RUN)
+![ANY.RUN Execution](screenshots/anyrun-email3.png)
+
+**1. Document Content (Social Engineering):**
+* The attachment is an Excel spreadsheet disguised as a "Supplier Appraisal Form" (written in Chinese). 
+* This is a social engineering tactic to convince the user to click "Enable Editing" or "Enable Macros" to view the content, which triggers the malicious payload.
+
+**2. File Execution & Process Activity:**
+* **Attachment Name:** `CBJ200620083959.xlsx`
+* When launched, the file drops and executes a suspicious process called `EQNEDT32.EXE`.
+* **Full Path:** `C:\Program Files\Common Files\Microsoft Shared\EQUATION\EQNEDT32.EXE`
+* **Analysis:** `EQNEDT32.EXE` is the legitimate Microsoft Equation Editor. Attackers abuse this process to execute malicious code (Remote Code Execution) and bypass security controls.
+
+**3. Exploit Identified:**
+* The malicious file attempts to exploit **CVE-2017-11882**.
+* This is a famous memory corruption vulnerability in the Equation Editor. Even though it is an older vulnerability, it remains highly effective in phishing campaigns because many systems are unpatched.
+
+**4. Network Activity (Payload Delivery):**
+* Once the exploit executes, the malware reaches out to the internet to download its final payload.
+* The sandbox intercepted a `GET` request to download a COVID-themed malicious executable:
+* **Download URL:** `hxxp://big9holdings[.]com/INVOICE/COVID19[.]exe`
+
+### Indicators of Compromise (IOCs)
+* **Malicious File:** `CBJ200620083959.xlsx`
+* **Suspicious Process:** `EQNEDT32.EXE`
+* **Exploited Vulnerability:** `CVE-2017-11882`
+* **Malicious Domain:** `big9holdings[.]com`
+* **Network Threat:** ET INFO Suspicious GET Request with Possible COVID-19 URI M1
+
+### Conclusion
+This is a weaponized Excel document. By exploiting CVE-2017-11882, the attacker can execute arbitrary code without needing the user to manually enable macros. The malware immediately downloads a secondary payload from `big9holdings[.]com`. In a real SOC environment, this would be escalated as a critical incident, the endpoint would be isolated, and the domain would be blocked at the firewall.
